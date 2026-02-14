@@ -1,0 +1,96 @@
+#filmarks-score-badge {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(20, 25, 45, 0.95);
+  border: 1px solid #3a506b;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  max-width: 320px;
+}
+
+#filmarks-score-badge.loading {
+  padding: 8px 14px;
+}
+
+/* Thumbnail */
+#filmarks-score-badge .filmarks-thumb {
+  width: 40px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* Right side info */
+#filmarks-score-badge .filmarks-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* Main score link */
+#filmarks-score-badge .filmarks-main-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+#filmarks-score-badge .filmarks-main-link:hover {
+  opacity: 0.7;
+}
+
+#filmarks-score-badge .filmarks-logo {
+  font-weight: 700;
+  font-size: 12px;
+  color: #f5c518;
+  letter-spacing: 0.5px;
+}
+
+#filmarks-score-badge .filmarks-star {
+  color: #f5c518;
+  font-size: 16px;
+}
+
+#filmarks-score-badge .filmarks-rating {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Matched title from Filmarks */
+#filmarks-score-badge .filmarks-match-title {
+  font-size: 11px;
+  color: #8b95a5;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Search results link */
+#filmarks-score-badge .filmarks-search-link {
+  font-size: 10px;
+  color: #5b9bd5;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#filmarks-score-badge .filmarks-search-link:hover {
+  text-decoration: underline;
+}
+
+#filmarks-score-badge.loading .filmarks-rating {
+  font-size: 12px;
+  color: #8b95a5;
+  font-weight: 400;
+}

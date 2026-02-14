@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "U-NEXT Filmarks Score",
+  "version": "1.0.0",
+  "description": "U-NEXTの作品詳細ページにFilmarksのスコアを表示します",
+  "permissions": [],
+  "host_permissions": [
+    "https://filmarks.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://video.unext.jp/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {}
+}
