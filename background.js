@@ -1,7 +1,10 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message.type === "FETCH_FILMARKS") {
-    fetchFilmarksScore(message.title).then(sendResponse);
-    return true; // keep message channel open for async response
+    (async () => {
+      const result = await fetchFilmarksScore(message.title);
+      sendResponse(result);
+    })();
+    return true;
   }
 });
 
@@ -10,7 +13,7 @@ async function fetchFilmarksScore(title) {
     const searchUrl =
       "https://filmarks.com/search/movies?q=" + encodeURIComponent(title);
     const res = await fetch(searchUrl);
-    if (!res.ok) return { error: "search_failed" };
+    if (!res.ok) return { error: "search_failed", status: res.status };
 
     const html = await res.text();
     return parseSearchResults(html, title, searchUrl);
@@ -35,10 +38,13 @@ function parseSearchResults(html, queryTitle, searchUrl) {
     const card = cards[i];
 
     // Extract movie URL from @click handler
+    // HTML may use &#39; or ' for quotes
     const urlMatch = card.match(
-      /onClickDetailLink\(\$event,\s*'(\/movies\/\d+)'\)/
+      /onClickDetailLink\(\$event,\s*(?:'|&#39;)(\/movies\/\d+)(?:'|&#39;)\)/
     );
-    const moviePath = urlMatch ? urlMatch[1] : null;
+    // Also try <a href="/movies/..."> as fallback
+    const linkMatch = !urlMatch && card.match(/href="(\/movies\/\d+)"/);
+    const moviePath = urlMatch ? urlMatch[1] : linkMatch ? linkMatch[1] : null;
 
     // Extract title from <h3 class="p-content-cassette__title">
     const titleMatch = card.match(

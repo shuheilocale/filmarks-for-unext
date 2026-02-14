@@ -1,4 +1,5 @@
 (() => {
+  console.log("[Filmarks] Content script loaded");
   let lastTitle = "";
   let currentBadge = null;
 
@@ -17,22 +18,31 @@
     return cleaned.length >= 2 ? cleaned : null;
   }
 
-  function getMovieTitleFromDOM() {
-    // U-NEXT uses styled-components with hashed class names,
-    // so we look for generic heading elements
-    const headings = document.querySelectorAll("h1, h2, h3");
-    for (const el of headings) {
-      const text = el.textContent.trim();
-      if (text.length >= 2 && text.length <= 100) {
-        // Skip section headers
-        if (
-          /^(おすすめ|関連|あなた|新着|ランキング|特集|カテゴリ|ジャンル|見どころ|ストーリー|ここがポイント|キャスト|スタッフ|エピソード)/.test(
-            text
-          )
-        ) {
-          continue;
+  function findTitleElement(titleText) {
+    if (!titleText) return null;
+    const norm = (s) => s.replace(/[\s\u3000]+/g, "");
+    const target = norm(titleText);
+
+    // 1. Try heading tags first (fast)
+    for (const tag of ["h1", "h2", "h3", "h4"]) {
+      for (const el of document.getElementsByTagName(tag)) {
+        if (norm(el.textContent) === target) return el;
+      }
+    }
+
+    // 2. Find text nodes containing parts of the title, then walk up
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT
+    );
+    while (walker.nextNode()) {
+      const text = walker.currentNode.textContent.trim();
+      if (text.length >= 2 && target.includes(norm(text))) {
+        let el = walker.currentNode.parentElement;
+        while (el && el !== document.body) {
+          if (norm(el.textContent) === target) return el;
+          el = el.parentElement;
         }
-        return { text, element: el };
       }
     }
     return null;
@@ -105,13 +115,27 @@
     });
   }
 
+  function positionBadge(badge, title) {
+    const titleEl = findTitleElement(title);
+    if (titleEl) {
+      titleEl.insertAdjacentElement("afterend", badge);
+      return true;
+    }
+    return false;
+  }
+
   function injectBadge() {
-    // Already showing for this title?
-    const docTitle = getMovieTitleFromDocument();
-    const title = docTitle;
+    const title = getMovieTitleFromDocument();
     if (!title) return;
-    if (title === lastTitle && document.getElementById("filmarks-score-badge"))
+
+    const existingBadge = document.getElementById("filmarks-score-badge");
+    if (title === lastTitle && existingBadge) {
+      // Badge exists but might be in wrong position (appended to body initially)
+      if (existingBadge.parentElement === document.body) {
+        positionBadge(existingBadge, title);
+      }
       return;
+    }
 
     removeBadge();
     lastTitle = title;
@@ -119,8 +143,9 @@
     const badge = createBadge();
     currentBadge = badge;
 
-    // Append to body as fixed-position overlay (immune to React re-renders)
-    document.body.appendChild(badge);
+    if (!positionBadge(badge, title)) {
+      document.body.appendChild(badge);
+    }
 
     console.log("[Filmarks] Searching for:", title);
 

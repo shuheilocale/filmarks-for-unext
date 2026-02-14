@@ -1,45 +1,24 @@
 #filmarks-score-badge {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 999999;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(20, 25, 45, 0.95);
-  border: 1px solid #3a506b;
-  border-radius: 10px;
-  padding: 10px 14px;
+  gap: 8px;
+  padding: 6px 12px;
+  margin: 8px 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  max-width: 320px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
 }
 
 #filmarks-score-badge.loading {
-  padding: 8px 14px;
-}
-
-/* Thumbnail */
-#filmarks-score-badge .filmarks-thumb {
-  width: 40px;
-  height: 56px;
-  object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
-}
-
-/* Right side info */
-#filmarks-score-badge .filmarks-info {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  padding: 4px 12px;
 }
 
 /* Main score link */
 #filmarks-score-badge .filmarks-main-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   text-decoration: none;
   cursor: pointer;
   transition: opacity 0.2s;
@@ -51,18 +30,18 @@
 
 #filmarks-score-badge .filmarks-logo {
   font-weight: 700;
-  font-size: 12px;
+  font-size: 11px;
   color: #f5c518;
   letter-spacing: 0.5px;
 }
 
 #filmarks-score-badge .filmarks-star {
   color: #f5c518;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 #filmarks-score-badge .filmarks-rating {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #ffffff;
 }
@@ -71,7 +50,7 @@
 #filmarks-score-badge .filmarks-match-title {
   font-size: 11px;
   color: #8b95a5;
-  max-width: 220px;
+  max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -90,7 +69,23 @@
 }
 
 #filmarks-score-badge.loading .filmarks-rating {
-  font-size: 12px;
+  font-size: 11px;
   color: #8b95a5;
   font-weight: 400;
+}
+
+/* Thumbnail - smaller for inline */
+#filmarks-score-badge .filmarks-thumb {
+  width: 28px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Right side info */
+#filmarks-score-badge .filmarks-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
