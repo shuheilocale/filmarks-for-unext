@@ -12,7 +12,6 @@
     {
       "matches": ["https://video.unext.jp/*"],
       "js": ["content.js"],
-      "css": ["styles.css"],
       "run_at": "document_idle"
     }
   ],

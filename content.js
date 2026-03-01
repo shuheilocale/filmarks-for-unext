@@ -1,7 +1,6 @@
 (() => {
   console.log("[Ratings] Content script loaded");
   let lastTitle = "";
-  let currentHost = null;
 
   const BADGE_STYLES = `
     :host {
@@ -177,7 +176,6 @@
   function removeBadge() {
     const existing = document.getElementById("unext-ratings-host");
     if (existing) existing.remove();
-    currentHost = null;
   }
 
   function escapeHtml(str) {
@@ -203,7 +201,6 @@
     container.innerHTML = `<span class="loading-text">読み込み中...</span>`;
     shadow.appendChild(container);
 
-    host._shadow = shadow;
     host._container = container;
     return host;
   }
@@ -318,7 +315,6 @@
     lastTitle = title;
 
     const host = createBadge();
-    currentHost = host;
 
     if (!positionBadge(host, title)) {
       document.body.appendChild(host);
