@@ -1,0 +1,37 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "779eff381b4d",
+  "session_id": "08ef4ee4-4292-44e6-95ef-873976928225",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-01T07:57:03.30278Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "CLAUDE.md",
+    "background.js",
+    "content.js",
+    "manifest.json",
+    "styles.css"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "c5db2adf-3339-46fd-a456-2d190b005813",
+  "checkpoint_transcript_start": 840,
+  "transcript_lines_at_start": 840,
+  "token_usage": {
+    "input_tokens": 5150,
+    "cache_creation_tokens": 12011,
+    "cache_read_tokens": 1015958,
+    "output_tokens": 2390,
+    "api_call_count": 8
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-01T07:57:02.554471Z",
+    "agent_lines": 21,
+    "human_added": 94,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 115,
+    "agent_percentage": 18.26086956521739
+  },
+  "transcript_path": ".claude/projects/-Users-shuhei-99-private-unext-ratings/08ef4ee4-4292-44e6-95ef-873976928225.jsonl"
+}
