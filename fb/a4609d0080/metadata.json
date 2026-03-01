@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "fba4609d0080",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 18,
+  "files_touched": [
+    "CLAUDE.md",
+    "background.js",
+    "content.js",
+    "manifest.json",
+    "styles.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/fb/a4609d0080/0/metadata.json",
+      "transcript": "/fb/a4609d0080/0/full.jsonl",
+      "context": "/fb/a4609d0080/0/context.md",
+      "content_hash": "/fb/a4609d0080/0/content_hash.txt",
+      "prompt": "/fb/a4609d0080/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 169,
+    "cache_creation_tokens": 184476,
+    "cache_read_tokens": 10823350,
+    "output_tokens": 54137,
+    "api_call_count": 107
+  }
+}
