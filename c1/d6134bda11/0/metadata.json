@@ -1,0 +1,37 @@
+{
+  "cli_version": "0.4.4",
+  "checkpoint_id": "c1d6134bda11",
+  "session_id": "08ef4ee4-4292-44e6-95ef-873976928225",
+  "strategy": "manual-commit",
+  "created_at": "2026-03-01T08:04:19.762483Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "PRIVACY_POLICY.md",
+    "icons/icon128.png",
+    "icons/icon16.png",
+    "icons/icon48.png",
+    "manifest.json"
+  ],
+  "agent": "Claude Code",
+  "transcript_identifier_at_start": "1e96af02-11c3-465e-be64-8cca2d34f84f",
+  "checkpoint_transcript_start": 927,
+  "transcript_lines_at_start": 927,
+  "token_usage": {
+    "input_tokens": 19,
+    "cache_creation_tokens": 4160,
+    "cache_read_tokens": 1470978,
+    "output_tokens": 2186,
+    "api_call_count": 11
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-03-01T08:04:19.094309Z",
+    "agent_lines": 43,
+    "human_added": 104,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 147,
+    "agent_percentage": 29.25170068027211
+  },
+  "transcript_path": ".claude/projects/-Users-shuhei-99-private-unext-ratings/08ef4ee4-4292-44e6-95ef-873976928225.jsonl"
+}
